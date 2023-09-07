@@ -16,4 +16,7 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
+      - uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
+        env:
+          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
       - run: echo "🚀 Launch!"
