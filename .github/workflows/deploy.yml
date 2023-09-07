@@ -13,7 +13,7 @@ jobs:
     name: Deploy
     needs: ci
     runs-on: ubuntu-latest
-    environment: production
+    # environment: production
     steps:
       - uses: actions/checkout@v4
       - uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
