@@ -40,5 +40,6 @@ workflows:
   #
   # See: https://github.com/CircleCI-Public/circleci-cli/issues/577
   noop:
+    unless: << pipeline.parameters.GHA_Action >>
     jobs:
       - noop
