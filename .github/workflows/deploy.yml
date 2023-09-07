@@ -4,6 +4,14 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
 
 jobs:
   ci:
@@ -13,10 +21,12 @@ jobs:
     name: Deploy
     needs: ci
     runs-on: ubuntu-latest
-    # environment: production
+    environment: ${{ inputs.environment || 'production' }}
     steps:
       - uses: actions/checkout@v4
       - uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
+        with:
+          GHA_Meta: ${{ inputs.environment || 'production' }}
       - run: echo "🚀 Launch!"
