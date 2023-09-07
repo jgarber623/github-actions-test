@@ -23,5 +23,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "${{ github.ref }}"
-      - run: echo "${{ inputs.greeting }}, so-and-so!"
+      - run: echo "${{ inputs.greeting || 'Bonjour' }}, so-and-so!"
       - run: echo "🥳 Test suite passed!"
