@@ -5,6 +5,16 @@ on:
     branches: [main]
   workflow_call:
   workflow_dispatch:
+    inputs:
+      greeting:
+        description: "Choose a greeting"
+        required: true
+        default: "Hello"
+        type: choice
+        options:
+          - "Hello"
+          - "Good morning"
+          - "Good evening"
 
 jobs:
   test:
@@ -12,4 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: echo "${{ github.ref }}"
+      - run: echo "${{ inputs.greeting }}, so-and-so!"
       - run: echo "🥳 Test suite passed!"
