@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
+        description: "Deploy to"
         required: true
         default: "staging"
         type: choice
